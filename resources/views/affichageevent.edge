@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title> Event-Ich </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        {{style('bootstrap/css/bootstrap.min')}}
+          
+      {{style('style')}}
+ {{script('bootstrap/js/jquery.min')}}
+ {{script('bootstrap/js/popper.min')}}
+  {{script('bootstrap/js/bootstrap.min')}}
+
+        <style>
+            /* Make the image fully responsive */
+            .carousel-inner img {
+                width: 20%;
+                height: 20%;
+            }
+        </style>
+
+    </head>
+    
+    <body style="background-image:url(test8.jpg);">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark" id="Navbar">
+    
+    <table>
+        <tr>
+            <th colspan="1"  width="150px">  <h2 style='color:white'>EVENT ICH </h2></th>
+            <th colspan="1"  width="1000px">
+                <form class="form-inline" action="/search" method="POST">
+                 {{csrfField()}}
+                    <input class="form-control mr-sm-2" type="text" placeholder="Rechercher un évènement" size=50 name="recherche" required autofocus name="recherche">
+                    <button class="btn btn-success" type="submit" >Rechercher</button>
+                </form>
+            </th>
+            <th colspan="1"  width="1500px">  <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home_client"> Home </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/add_event">Ajouter Evenement</a>
+                    </li>
+                   <li class="nav-item">
+                       <div class="dropdown">
+                         <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">Consulter les Evenements
+                               <span class="caret"></span></button>
+                           <ul class="dropdown-menu">
+                           @each(index in z )
+                           <form class="form-inline" action="/reservation" method="POST">
+                           {{csrfField()}}
+                           <input hidden type="text" value={{index.id}} required autofocus name="1"/>
+                         <li><button class="btn btn-link btn-lg btn-block" type="submit"  >------  {{index.libelle}}  -------</button></li>
+                             </form>
+                             @endeach
+                        </ul>
+                      </div>
+                   </li>
+                   
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"></a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="#"></a>
+                    </li>
+                </ul>
+            
+            </th>
+                    <th colspan="1"  width="200px"><ul class="navbar-nav">
+                
+                         <li class="nav-item">
+                        <div class="dropdown">
+                            <button class="btn btn-dark dropdown-toggle" type="button" data-toggle="dropdown">
+                                <span class="caret">{{auth.user.username}}</span></button>
+                            <ul class="dropdown-menu">
+                                <form action="/deco">
+                                    <li><input type="submit" value='Deconnexion' class="btn btn-lg btn-danger btn-block " onclick="return window.confirm(' MR/MME {{auth.user.username}} voulez-vous vous deconnectez?')"/></li>
+                                </form>
+                                                        
+                            </ul>
+                        </div>
+                    </li>    
+                            
+                </ul> </th>
+            
+        </tr>
+    </table>
+</nav>
+</br>
+</br>
+</br>
+</br>
+<h1 <p style="color:white" align="center">LISTE DES EVENEMENTS<h1>
+
+
+</br>
+
+<div  class="{{suv}}" role="{{suv1}}" style="{{suv2}}" >
+ {{error}}
+</div>
+
+
+<div style="margin-left: 100px; margin-right:100px ">
+<table border="1px" align="center" class='table table-bordered  table-striped table-responsive-xl'>
+<body>
+<tr>
+<p style="color:white" hidden>id</p>
+<th><p style="color:white">Nom</p></th>
+<th><p style="color:white">Adresse</p></th>
+<th><p style="color:white">Nombre de place</p></th>
+<th><p style="color:white">Prix/place</p></th>
+<th><p style="color:white">Reservation</p></th>
+
+
+</tr>
+<tr>
+@each(index in event )
+ 
+<form class="form-group" role="form" action="/enregistrer" method="POST">
+            {{csrfField()}}
+<input type="text" hidden value="{{index.code_event}}" style="color:white" required autofocus name="code" placeholder="{{index.code_event}} class="form-control mb-2 mr-sm-2">
+<input hidden type="text" value="{{index.type_events_id}}" style="color:white" required autofocus name="event">
+<th><input type="text" readonly value="{{index.nom_event}}" style="color:black" required autofocus name="nom"class="form-control mb-2 mr-sm-2"></th>
+<th><input type="text" readonly value="{{index.adresse}}" style="color:black" required autofocus name="adresse" class="form-control mb-2 mr-sm-2"></th>
+ 
+         <th><input type="number"  style="color:black" required autofocus name="nbr_place" class="form-control mb-2 mr-sm-2"></th>      
+               
+<th><input type="text" readonly value="{{index.Prix_ticket}}" style="color:black" required autofocus name="price" class="form-control mb-2 mr-sm-2"></th>
+<th><input type="submit" value='Valider' class="btn btn-lg btn-success btn-block " onclick="return window.confirm(' MR/MME {{auth.user.username}} voulez-vous valider cette Reservation?')"/></th>
+<input hidden type="text" value="{{index.date}}" style="color:white" required autofocus name="date">
+
+</form>
+</tr>
+@endeach
+
+
+</body>
+
+</table>
+        
+
+</br>
+       
+
+<p style="color:white " align="center" >{{x}}</p>
+    
+
+
+
+
+
+ 
+
+    </body>
+</html>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>EVENT-ICH</title>
+        <link rel="icon" href="icone.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+    {{ style('bootstrap/css/bootstrap.min') }}
+     {{ style('style') }}
+     {{ script('bootstrap/js/jquery.min') }}
+      {{ script('bootstrap/js/popper.min') }}
+       {{ script('bootstrap/js/bootstrap.min') }}
+      
+     
+
+        <style>
+            /* Remove the navbar's default margin-bottom and rounded borders */ 
+            .navbar {
+                margin-bottom: 0;
+                border-radius: 0;
+            }
+
+            /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+            .row.content {height: 450px}
+
+            /* Set gray background color and 100% height */
+            .sidenav {
+                padding-top: 20px;
+      background-color: #020A08;
+      height: 182%;
+            }
+
+            /* Set black background color, white text and some padding */
+            footer {
+                background-color: #555;
+                color: white;
+                padding: 1.5px;
+                 margin-top: 370px;
+            }
+
+            /* On small screens, set height to 'auto' for sidenav and grid */
+            @media screen and (max-width: 767px) {
+                .sidenav {
+                    height: auto;
+                    padding: 15px;
+                }
+                .row.content {height:auto;} 
+            }
+        </style>
+    </head>
+    <body class='text-center' style="background-image:url(test8.jpg);">
+
+       
+        
+       <nav class="navbar navbar-expand-sm bg-dark navbar-dark" id="Navbar">
+    
+    <table>
+        <tr>
+            <th colspan="1"  width="150px">  <h2 style='color:white'>EVENT ICH </h2></th>
+            <th colspan="1"  width="1000px">
+                <form class="form-inline" action="/search" method="POST">
+                 {{csrfField()}}
+                    <input class="form-control mr-sm-2" type="text" placeholder="Rechercher un évènement" size=50 name="recherche" required autofocus name="recherche">
+                    <button class="btn btn-success" type="submit" >Rechercher</button>
+                </form>
+            </th>
+            <th colspan="1"  width="1500px">  <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="  <nav class="navbar navbar-expand-sm bg-dark navbar-dark" id="Navbar">
+    
+  
+            </th>
+            <th colspan="1"  width="1500px">  <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home_client"> Home </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/add_event">Ajouter Evenement</a>
+                    </li>
+                   <li class="nav-item">
+                       <div class="dropdown">
+                         <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">Consulter les Evenements
+                               <span class="caret"></span></button>
+                           <ul class="dropdown-menu">
+                             @each(index in val )
+                           <form class="form-inline" action="/reservation" method="POST">
+                           {{csrfField()}}
+                           <input hidden type="text" value={{index.id}} required autofocus name="1"/>
+                            <li><button class="btn btn-link btn-lg btn-block" type="submit"  >------  {{index.libelle}}  -------</button></li>
+                             </form>
+                             @endeach
+                        </ul>
+                      </div>
+                   </li>
+                   
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"></a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="#"></a>
+                    </li>
+                </ul>
+            
+            </th>
+                    <th colspan="1"  width="200px"><ul class="navbar-nav">
+                
+                         <li class="nav-item">
+                        <div class="dropdown">
+                            <button class="btn btn-dark dropdown-toggle" type="button" data-toggle="dropdown">
+                                <span class="caret">{{auth.user.username}}</span></button>
+                            <ul class="dropdown-menu">
+                                <form action="/deco">
+                                    <li><input type="submit" value='Deconnexion' class="btn btn-lg btn-danger btn-block " onclick="return window.confirm(' MR/MME {{auth.user.username}} voulez-vous vous deconnectez?')"/></li>
+                                </form>
+                                                           
+                            </ul>
+                        </div>
+                    </li>    
+                            
+                </ul> </th>
+            
+        </tr>
+    </table>
+</nav>
+
+
+</br>
+
+<h1 <p style="color:white" align="center">APERCU DE LA RESERVATION <h1>
+
+</br>
+
+<div style="margin-left: 300px; margin-right:300px ">
+
+<table border-radius="0px" align="center" class='table table-bordered  table-striped table-responsive-xl' table-condensed>
+<body>
+<tr>
+<th><p style="color:blue">Numero de reservation</p></th>
+<th><p style="color:white" >{{id}}</p></th>
+</tr>
+<tr>
+<th><p style="color:blue">Nom de l'evenement</p></th>
+<th><p style="color:white">{{c}}</p></th>
+</tr>
+<tr>
+<th><p style="color:blue">Date de l'evenement</p></th>
+<th><p style="color:white">{{date}}</p></th>
+</tr>
+<tr>
+<th><p style="color:blue">Montant</p></th>
+<th><p style="color:white">{{montant}}</p></th>
+</tr>
+<tr>
+<th><p style="color:blue">Adresse de l'evenement</p></th>
+<th><p style="color:white">{{p}}</p></th>
+</tr>
+
+
+</body>
+
+</table>
+  <p id="Imprimer "> <input  type="button" class="btn btn-primary mb-2" value="Imprimer la fiche" onClick="window.print();"></p>
+</br>
+<h1 <p style="color:white" align="center">Frais à Payer par T-money ou Flooz <h1>
+
+<table border-radius="0px" align="center" class='table table-bordered  table-striped table-responsive-xl' table-condensed>
+<body>
+<form class="form-group" role="form" action="/payer" method="POST">
+            {{csrfField()}}
+<tr>
+<th><p style="color:white">Liste des numeros pour le paiement </p></th>
+</tr>
+
+<tr>
+@each(index in num )
+<input hidden type="text" value="{{c}}" required autofocus name ="c">
+<input hidden type="text" value="{{id}}" required autofocus name ="id">
+<th><input type="number" value="{{index.tel}}" style="color:black" required autofocus name="tel" class="form-control mb-2 mr-sm-2"></th>
+<th><input type="submit" value="confirmer" class="btn btn-primary mb-2" onclick="return window.confirm(' MR/MME {{auth.user.username}} voulez-vous Payer sur ce numéro ?')" ></th>
+@endeach
+
+</tr>
+</form>
+</body>
+
+</table>
+
+
+
+</div>
+      
+
+        <div class="alert alert-success" role="alert" style="margin-left: 200px; margin-right:200px ">
+
+  <h1 class="alert-heading">Cher(s) utilisateur(s) </h1>
+  <p>Une fois le règlement de votre réservation effectué via un des numéro proposé vous recevrez un sms confirmant votre réservation définitivement .</p>
+  <hr>
+  <p class="mb-0">Pour toutes annulation veuillez le faire 24h avant la date de l'Evenement choisi sous peine de ne pas être rembourser .Merci</p>
+</div>
+
+    </body>
+</html>
+
+
+
+
+
+
+
+
+

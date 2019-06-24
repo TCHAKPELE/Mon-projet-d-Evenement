@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Event-Ich</title>
+ 
+   {{ style('bootstrap/css/bootstrap.min') }}
+    {{ style('bootstrap/css/signin') }}
+     {{ style('style') }}
+</head>
+
+<body>
+
+  <section>
+    <div class="logo"></div>
+    <div class="title"></div>
+    <div class="subtitle">
+
+    </div>
+  </section>
+
+  
+    <form class="form-signin" method="POST" action="/login">
+     {{csrfField()}}
+      
+        <h1 class="h2 mb-2 font-weight-normal" style="color:antiquewhite">WELCOME TO EVENT-ICH</h1>
+
+       <p style="color:red">{{a}}</p>
+
+      <br />
+      <label for="inputlogin" class="sr-only">Login</label>
+      <input type="email" id="inputlogin" class="form-control" placeholder="Login" required autofocus name="email" " >
+    
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required name="password" " >
+      <script language="Javascript">document.getElementById('erreur').innerHTML = 'Mot de passe incorrect';</script>
+      <div class="checkbox mb-3">
+        <label style="color:antiquewhite">
+          <a href="/redirect3" > Mot de Passe oublié ?</a>
+        </label>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Connexion </button>
+      <a type="button" href="/inscription" class="btn btn-lg btn-secondary btn-block"> Inscription </a>
+        
+    </form>
+  
+</body>
+</html>
